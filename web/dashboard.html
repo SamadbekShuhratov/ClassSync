@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Classes · ClassSync</title>
+  <meta name="theme-color" content="#1e3b35">
+  <link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/app.css">
+  <link rel="stylesheet" href="/assets/css/dashboard.css">
+  <script src="/assets/js/theme.js"></script>
+  <script type="module" src="/assets/js/pages/dashboard.js"></script>
+</head>
+<body>
+<main class="dash wrap">
+  <div class="dash-head">
+    <div>
+      <h1 id="greeting">Your classes</h1>
+      <p id="summary">Loading your classes…</p>
+    </div>
+    <span class="spacer"></span>
+    <button class="btn btn-primary" id="newClass"><i data-icon="plus"></i>New class</button>
+  </div>
+  <div class="class-grid" id="grid" aria-live="polite">
+    <div class="skeleton skeleton-tile"></div>
+    <div class="skeleton skeleton-tile"></div>
+    <div class="skeleton skeleton-tile"></div>
+  </div>
+</main>
+</body>
+</html>

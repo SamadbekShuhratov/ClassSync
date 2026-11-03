@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ClassSync — Share your screen with every student</title>
+  <meta name="description" content="Push a link, share your screen and collect assignments on every computer in your classroom at once.">
+  <meta name="theme-color" content="#1e3b35">
+  <link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/app.css">
+  <link rel="stylesheet" href="/assets/css/landing.css">
+  <script src="/assets/js/theme.js"></script>
+  <script type="module" src="/assets/js/pages/landing.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="/"><img class="brand-mark" src="/assets/img/logo.svg" alt="">ClassSync</a>
+    <span class="spacer"></span>
+    <button class="btn btn-ghost btn-icon theme-toggle" aria-label="Toggle dark mode"><i data-icon="moon" class="i-moon"></i><i data-icon="sun" class="i-sun"></i></button>
+    <a class="btn btn-ghost hide-sm" href="/join">Join a class</a>
+    <span id="navGuest" class="row">
+      <a class="btn btn-ghost" href="/login">Sign in</a>
+      <a class="btn btn-primary" href="/register">Create account</a>
+    </span>
+    <a id="navUser" class="btn btn-primary" href="/dashboard" hidden>Open dashboard</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="page-enter">
+        <h1>Put your screen in front of every student.</h1>
+        <p class="lede">Send a link, share your screen and collect homework on every computer in the room — at the same moment. No more spelling out URLs or walking between desks.</p>
+        <div class="ctas">
+          <a class="btn btn-primary btn-lg" href="/register">Create a teacher account</a>
+          <a class="btn btn-lg" href="/join"><i data-icon="door"></i>I'm a student</a>
+        </div>
+        <div class="reassure">
+          <span><i data-icon="check"></i>Runs on your school network</span>
+          <span><i data-icon="check"></i>Works without internet</span>
+          <span><i data-icon="check"></i>Free and open source</span>
+        </div>
+      </div>
+
+      <div class="scene" id="scene" aria-label="Illustration: the teacher's screen appears on six student computers">
+        <svg class="beams" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M44 47 C 52 47, 52 23, 58 23"/>
+          <path d="M44 47 C 60 47, 66 23, 79 23"/>
+          <path d="M44 50 C 51 50, 52 50, 58 50"/>
+          <path d="M44 50 C 60 50, 66 50, 79 50"/>
+          <path d="M44 53 C 52 53, 52 77, 58 77"/>
+          <path d="M44 53 C 60 53, 66 77, 79 77"/>
+        </svg>
+        <div class="scene-teacher">
+          <div class="teacher-screen">
+            <div class="url"><span>python.org/tutorial</span></div>
+            <div class="blk"></div><div class="ln"></div><div class="ln s"></div><div class="ln"></div>
+          </div>
+          <div class="teacher-stand"></div>
+          <div class="teacher-label"><span class="live">LIVE</span>Your screen</div>
+        </div>
+        <div class="scene-screens" aria-hidden="true">
+          <div class="mini"><div class="url"><i></i><i></i></div><div class="page"><div class="blk"></div><div class="ln"></div><div class="ln s"></div></div><span class="name">Aziza</span></div>
+          <div class="mini"><div class="url"><i></i><i></i></div><div class="page"><div class="blk"></div><div class="ln"></div><div class="ln s"></div></div><span class="name">Bekzod</span></div>
+          <div class="mini"><div class="url"><i></i><i></i></div><div class="page"><div class="blk"></div><div class="ln"></div><div class="ln s"></div></div><span class="name">Dilnoza</span></div>
+          <div class="mini"><div class="url"><i></i><i></i></div><div class="page"><div class="blk"></div><div class="ln"></div><div class="ln s"></div></div><span class="name">Jasur</span></div>
+          <div class="mini"><div class="url"><i></i><i></i></div><div class="page"><div class="blk"></div><div class="ln"></div><div class="ln s"></div></div><span class="name">Malika</span></div>
+          <div class="mini"><div class="url"><i></i><i></i></div><div class="page"><div class="blk"></div><div class="ln"></div><div class="ln s"></div></div><span class="name">Timur</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="band-head">
+        <h2>Everything you do at the front of the room, on every desk</h2>
+        <p>One console for the whole lesson. Students see what you send instantly, whether they joined from the desktop helper or a browser tab.</p>
+      </div>
+      <div class="features">
+        <div class="feature lead">
+          <div class="fi"><i data-icon="link"></i></div>
+          <h3>Open a website on every computer</h3>
+          <p>Paste a link and press send. It opens on each student's machine in under a second — no spelling, no typos, no "which site was it?".</p>
+        </div>
+        <div class="feature">
+          <div class="fi"><i data-icon="cast"></i></div>
+          <h3>Share your screen live</h3>
+          <p>Show a window, a tab or your whole display. Students watch full-screen, with a quality setting for slow Wi-Fi.</p>
+        </div>
+        <div class="feature">
+          <div class="fi"><i data-icon="inbox"></i></div>
+          <h3>Collect assignments</h3>
+          <p>Open an assignment and an upload page appears for everyone. See who has handed in, then download it all as one ZIP.</p>
+        </div>
+        <div class="feature">
+          <div class="fi"><i data-icon="target"></i></div>
+          <h3>Focus mode</h3>
+          <p>One switch covers student screens with a message so the room looks up.</p>
+        </div>
+        <div class="feature">
+          <div class="fi"><i data-icon="megaphone"></i></div>
+          <h3>Announcements</h3>
+          <p>Pin a short instruction to the top of every student's screen.</p>
+        </div>
+        <div class="feature">
+          <div class="fi"><i data-icon="wifi"></i></div>
+          <h3>Stays inside your school</h3>
+          <p>Runs on a teacher laptop. Files and names never leave your local network.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="band-head"><h2>Ready before the bell</h2></div>
+      <div class="steps">
+        <div class="step"><h3>Start ClassSync on your laptop</h3><p>Run <code>python run.py</code> and create your teacher account.</p></div>
+        <div class="step"><h3>Create a class</h3><p>You get a six-letter code. Put it on the projector with one click.</p></div>
+        <div class="step"><h3>Students join</h3><p>They open the join page or run the desktop helper, type the code and their name. Done.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta-band">
+        <div>
+          <h2>Teach the lesson, not the URL.</h2>
+          <p>Set up your first class in about a minute.</p>
+        </div>
+        <span class="spacer"></span>
+        <a class="btn btn-ghost btn-lg" href="/login">Sign in</a>
+        <a class="btn btn-marker btn-lg" href="/register">Create account</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span class="brand" style="font-size:15px"><img class="brand-mark" style="width:22px;height:22px" src="/assets/img/logo.svg" alt="">ClassSync</span>
+    <span class="spacer"></span>
+    <a href="/join">Join a class</a>
+    <a href="/login">Teacher sign in</a>
+  </div>
+</footer>
+</body>
+</html>

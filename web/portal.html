@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class · ClassSync</title>
+  <meta name="theme-color" content="#1e3b35">
+  <link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/app.css">
+  <link rel="stylesheet" href="/assets/css/console.css">
+  <link rel="stylesheet" href="/assets/css/portal.css">
+  <script src="/assets/js/theme.js"></script>
+  <script type="module" src="/assets/js/pages/portal.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <span class="brand"><img class="brand-mark" src="/assets/img/logo.svg" alt="">ClassSync</span>
+    <span class="muted hide-sm" style="margin-left:6px">/</span>
+    <div style="min-width:0" class="hide-sm">
+      <div class="truncate" style="font-weight:650;line-height:1.2" id="className">&nbsp;</div>
+      <div class="muted small truncate" style="line-height:1.2" id="teacherName"></div>
+    </div>
+    <span class="spacer"></span>
+    <span class="conn" id="conn" data-state="connecting"><span class="dot"></span><span>Connecting…</span></span>
+    <button class="btn btn-ghost btn-icon theme-toggle" aria-label="Toggle dark mode"><i data-icon="moon" class="i-moon"></i><i data-icon="sun" class="i-sun"></i></button>
+    <button class="btn btn-ghost" id="meMenu" style="padding:0 8px 0 4px;gap:9px"></button>
+  </div>
+</header>
+<div class="announce-bar" id="announce" hidden role="status"><div class="wrap"><i data-icon="megaphone"></i><p></p><small></small></div></div>
+
+<main class="portal-main wrap">
+  <div class="portal-grid">
+    <section>
+      <div class="viewer" id="viewer" tabindex="-1">
+        <div class="waiting" id="waiting">
+          <div class="chalk-dots"><i></i><i></i><i></i></div>
+          <h2 id="waitTitle">Waiting for your teacher</h2>
+          <p>When your teacher shares their screen it appears here. Links and assignments show up on the right.</p>
+        </div>
+        <img id="screen" alt="Teacher's screen" hidden>
+        <span class="badge badge-live live-tag" id="liveTag" hidden><span class="dot dot-live" style="background:var(--marker-ink)"></span>Live</span>
+        <div class="vtools" id="vtools" hidden>
+          <button class="btn btn-sm" id="fsBtn"><i data-icon="maximize" data-size="16"></i>Full screen</button>
+        </div>
+      </div>
+      <div class="viewer-caption" id="viewerCaption"><i data-icon="info" data-size="16"></i><span>Tip: double-click the screen to view it full-screen.</span></div>
+    </section>
+
+    <aside class="portal-side">
+      <div class="panel">
+        <div class="panel-head"><h2>Links from your teacher</h2></div>
+        <ul class="feed" id="feed"></ul>
+        <div class="helper-tip" id="helperTip" hidden><i data-icon="zap"></i><span>Links open automatically when the ClassSync Helper is running on this computer.</span></div>
+      </div>
+      <div class="panel" id="tasksPanel">
+        <div class="panel-head"><h2>Assignments</h2><span class="spacer"></span><span class="badge" id="taskCount" hidden></span></div>
+        <div id="tasks"></div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<div class="focus-overlay" id="focus" hidden role="alertdialog" aria-labelledby="focusMsg">
+  <div>
+    <div class="ring"><i data-icon="target"></i></div>
+    <h1 id="focusMsg">Eyes on the teacher, please</h1>
+    <p>Your teacher turned on focus mode. This screen unlocks when they turn it off.</p>
+  </div>
+</div>
+</body>
+</html>

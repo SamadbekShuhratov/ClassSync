@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class · ClassSync</title>
+  <meta name="theme-color" content="#1e3b35">
+  <link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/app.css">
+  <link rel="stylesheet" href="/assets/css/console.css">
+  <script src="/assets/js/theme.js"></script>
+  <script type="module" src="/assets/js/pages/console.js"></script>
+</head>
+<body>
+<div class="live-bar" id="liveBar" hidden role="status">
+  <div class="wrap">
+    <span class="dot dot-live"></span>
+    <span id="liveBarText">You're sharing your screen</span>
+    <span class="spacer"></span>
+    <button class="btn btn-sm" id="liveBarStop"><i data-icon="stop"></i>Stop sharing</button>
+  </div>
+</div>
+
+<main class="console wrap">
+  <div class="class-head">
+    <a class="btn btn-ghost btn-icon back" href="/dashboard" aria-label="Back to classes"><i data-icon="arrow-left"></i></a>
+    <div class="class-swatch" id="classSwatch"></div>
+    <div style="min-width:0">
+      <h1 class="truncate" id="className">&nbsp;</h1>
+      <div class="meta">
+        <span id="classSubject"></span>
+        <span class="conn" id="conn" data-state="connecting"><span class="dot"></span><span>Connecting…</span></span>
+      </div>
+    </div>
+    <span class="spacer"></span>
+    <span class="code-chip" title="Join code"><span id="classCode">······</span>
+      <button id="copyCode" aria-label="Copy join code"><i data-icon="copy" data-size="16"></i></button></span>
+    <button class="btn" id="presentBtn"><i data-icon="present"></i>Show join code</button>
+  </div>
+
+  <div class="tabs-wrap">
+    <div class="tabs" role="tablist" id="tabs">
+      <button class="tab" role="tab" data-tab="live" aria-selected="true"><i data-icon="zap" data-size="16"></i>Live</button>
+      <button class="tab" role="tab" data-tab="assignments" aria-selected="false"><i data-icon="inbox" data-size="16"></i>Assignments <span class="count" id="countAssignments">0</span></button>
+      <button class="tab" role="tab" data-tab="students" aria-selected="false"><i data-icon="users" data-size="16"></i>Students <span class="count" id="countStudents">0</span></button>
+      <button class="tab" role="tab" data-tab="activity" aria-selected="false"><i data-icon="activity" data-size="16"></i>Activity</button>
+      <button class="tab" role="tab" data-tab="settings" aria-selected="false"><i data-icon="sliders" data-size="16"></i>Settings</button>
+      <span class="tab-indicator"></span>
+    </div>
+  </div>
+
+  <!-- ============================== LIVE -->
+  <section class="tab-panel" id="tab-live" role="tabpanel">
+    <div class="live-grid">
+      <div class="panel" id="screenPanel">
+        <div class="panel-head">
+          <h2>Screen sharing</h2>
+          <span class="badge" id="screenBadge">Off</span>
+          <span class="spacer"></span>
+          <span class="muted small row" style="--gap:6px"><i data-icon="eye" data-size="16"></i><span id="viewerCount">0</span> watching</span>
+        </div>
+        <div class="stage" id="stage">
+          <div class="stage-idle" id="stageIdle">
+            <div class="art"><i data-icon="cast"></i></div>
+            <h3 style="color:#fff">Show your screen to the class</h3>
+            <p>Pick a window, a browser tab or your whole display. It opens full-screen on every student computer.</p>
+            <button class="btn btn-marker btn-lg" id="shareStart"><i data-icon="play"></i>Start sharing</button>
+          </div>
+          <video id="preview" muted playsinline hidden></video>
+          <span class="badge badge-live stage-live-tag" id="stageLive" hidden><span class="dot dot-live" style="background:var(--marker-ink)"></span>Live</span>
+          <span class="stage-stats" id="stageStats" hidden></span>
+        </div>
+        <div class="screen-foot">
+          <span class="label">Quality</span>
+          <div class="segmented" id="quality" role="group" aria-label="Stream quality">
+            <button data-q="saver" aria-pressed="false" title="Lowest bandwidth — for slow Wi-Fi">Data saver</button>
+            <button data-q="balanced" aria-pressed="true">Balanced</button>
+            <button data-q="sharp" aria-pressed="false" title="Best for small text and code">Sharp</button>
+          </div>
+          <span class="spacer"></span>
+          <button class="btn btn-danger btn-sm" id="shareStop" hidden><i data-icon="stop"></i>Stop sharing</button>
+        </div>
+      </div>
+
+      <div class="live-side">
+        <div class="panel panel-pad">
+          <div class="section-title"><h2>Open a link for everyone</h2></div>
+          <form class="link-form" id="linkForm" novalidate>
+            <div class="field" style="flex:1">
+              <div class="input-wrap">
+                <i data-icon="globe"></i>
+                <input class="input" name="url" id="linkUrl" placeholder="python.org/tutorial" autocomplete="off" spellcheck="false" aria-label="Link to open">
+              </div>
+            </div>
+            <button class="btn btn-primary" type="submit"><i data-icon="send" data-size="16"></i>Send</button>
+          </form>
+          <ul class="recent" id="recentLinks"></ul>
+        </div>
+
+        <div class="panel panel-pad" id="focusPanel">
+          <div class="toggle-row">
+            <div class="txt"><b>Focus mode</b><span>Covers student screens with your message.</span></div>
+            <label class="switch"><input type="checkbox" id="focusToggle" aria-label="Focus mode"><span></span></label>
+          </div>
+          <div class="field" style="margin-top:14px">
+            <input class="input" id="focusMsg" maxlength="140" placeholder="Eyes on the teacher, please" aria-label="Focus message">
+          </div>
+        </div>
+
+        <div class="panel panel-pad">
+          <div class="section-title"><h2>Announcement</h2></div>
+          <form id="announceForm" class="stack" style="--gap:10px" novalidate>
+            <textarea class="input" id="announceText" maxlength="500" rows="2" style="min-height:70px" placeholder="Pinned at the top of every student's screen — e.g. Open exercise 4 on page 52"></textarea>
+            <div class="row"><span class="muted small" id="announceCount">0 / 500</span><span class="spacer"></span>
+              <button class="btn btn-board btn-sm" type="submit"><i data-icon="megaphone" data-size="16"></i>Pin for everyone</button></div>
+          </form>
+          <div class="pinned" id="pinned" hidden><i data-icon="megaphone"></i><p></p>
+            <button class="btn btn-ghost btn-icon btn-sm" id="unpin" aria-label="Remove announcement"><i data-icon="x" data-size="16"></i></button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== ASSIGNMENTS -->
+  <section class="tab-panel" id="tab-assignments" role="tabpanel" hidden>
+    <div class="toolbar">
+      <div><h2>Assignments</h2><p class="muted small" style="margin-top:4px">Opening an assignment shows an upload page on every student screen.</p></div>
+      <span class="spacer"></span>
+      <button class="btn btn-primary" id="newAssignment"><i data-icon="plus"></i>New assignment</button>
+    </div>
+    <div class="panel"><ul class="list" id="assignmentList"></ul></div>
+  </section>
+
+  <!-- ============================== STUDENTS -->
+  <section class="tab-panel" id="tab-students" role="tabpanel" hidden>
+    <div class="toolbar">
+      <div class="input-wrap"><i data-icon="search"></i><input class="input" id="studentSearch" placeholder="Search students" aria-label="Search students"></div>
+      <span class="muted small" id="onlineSummary"></span>
+      <span class="spacer"></span>
+      <button class="btn" id="presentBtn2"><i data-icon="user-plus"></i>Invite students</button>
+    </div>
+    <div class="panel"><div class="table-scroll" id="studentTable"></div></div>
+  </section>
+
+  <!-- ============================== ACTIVITY -->
+  <section class="tab-panel" id="tab-activity" role="tabpanel" hidden>
+    <div class="panel">
+      <ul class="timeline" id="timeline"></ul>
+      <div style="padding:0 20px 18px" id="moreWrap" hidden><button class="btn btn-sm" id="moreActivity">Load older activity</button></div>
+    </div>
+  </section>
+
+  <!-- ============================== SETTINGS -->
+  <section class="tab-panel" id="tab-settings" role="tabpanel" hidden>
+    <div class="settings-grid">
+      <h3>Class details<div class="desc">Shown to students in their portal.</div></h3>
+      <div class="panel panel-pad" id="detailsSlot"></div>
+
+      <h3>Join code<div class="desc">Generate a new code to stop people joining with the old one. Students already in the class stay connected.</div></h3>
+      <div class="panel panel-pad"><div class="row wrap-ok">
+        <span class="code-chip" style="height:40px;font-size:18px"><span id="settingsCode"></span></span>
+        <span class="spacer"></span>
+        <button class="btn" id="regenCode"><i data-icon="refresh"></i>New code</button>
+      </div></div>
+
+      <h3>Delete class<div class="desc">Removes the class, its students, assignments and every uploaded file. This can't be undone.</div></h3>
+      <div class="panel panel-pad danger-panel"><div class="row wrap-ok">
+        <p class="muted small" style="flex:1;min-width:200px">Download any submissions you need before deleting.</p>
+        <button class="btn btn-danger" id="deleteClass"><i data-icon="trash"></i>Delete class</button>
+      </div></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

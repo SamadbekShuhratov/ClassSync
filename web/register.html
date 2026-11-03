@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create account · ClassSync</title>
+  <meta name="theme-color" content="#1e3b35">
+  <link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/app.css">
+  <link rel="stylesheet" href="/assets/css/auth.css">
+  <script src="/assets/js/theme.js"></script>
+  <script type="module" src="/assets/js/pages/auth.js"></script>
+</head>
+<body>
+<div class="auth">
+  <aside class="auth-board">
+    <a class="brand" href="/"><img class="brand-mark" src="/assets/img/logo.svg" alt="">ClassSync</a>
+    <div class="chalk">
+      <h2>Teach the lesson, <span class="underline">not the URL<svg viewBox="0 0 120 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9c22-6 52-7 114-3"/></svg></span>.</h2>
+      <p>Your account lives on this ClassSync server — nothing is sent to the cloud.</p>
+      <ul>
+        <li><i data-icon="users"></i>Unlimited classes and students</li>
+        <li><i data-icon="target"></i>Focus mode and announcements</li>
+        <li><i data-icon="download"></i>Download every submission as one ZIP</li>
+      </ul>
+    </div>
+    <div class="board-foot">Students don't need accounts — they join with a class code.</div>
+  </aside>
+
+  <main class="auth-main">
+    <div class="top">
+      <a class="brand auth-mobile-brand" href="/"><img class="brand-mark" src="/assets/img/logo.svg" alt="">ClassSync</a>
+      <span class="row" style="--gap:6px">
+        <button class="btn btn-ghost btn-icon theme-toggle" aria-label="Toggle dark mode"><i data-icon="moon" class="i-moon"></i><i data-icon="sun" class="i-sun"></i></button>
+        <a class="btn btn-ghost btn-sm" href="/login">Sign in instead</a>
+      </span>
+    </div>
+
+    <div class="auth-card page-enter">
+      <h1>Create your account</h1>
+      <p class="sub">For teachers. Takes less than a minute.</p>
+      <form id="authForm" data-mode="register" novalidate>
+        <div class="callout callout-red form-alert" id="formAlert" role="alert"><i data-icon="alert"></i><span></span></div>
+        <div class="field">
+          <label for="name">Full name</label>
+          <div class="input-wrap">
+            <i data-icon="user"></i>
+            <input class="input" id="name" name="name" autocomplete="name" placeholder="Dilnoza Rahimova" required autofocus>
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <div class="input-wrap">
+            <i data-icon="mail"></i>
+            <input class="input" id="email" name="email" type="email" autocomplete="email" placeholder="you@school.edu" required>
+          </div>
+          <span class="hint">Used to sign in. We never send email.</span>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="input-wrap">
+            <i data-icon="lock"></i>
+            <input class="input" id="password" name="password" type="password" autocomplete="new-password" placeholder="At least 8 characters" required>
+            <button type="button" class="btn btn-ghost btn-icon btn-sm input-action" data-reveal="password" aria-label="Show password"><i data-icon="eye"></i></button>
+          </div>
+          <div class="strength" id="strength" data-score="0" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <span class="hint" id="strengthHint">Use 8+ characters with a letter and a number.</span>
+        </div>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Create account</button>
+      </form>
+      <p class="alt">Already have an account? <a href="/login">Sign in</a></p>
+    </div>
+  </main>
+</div>
+</body>
+</html>

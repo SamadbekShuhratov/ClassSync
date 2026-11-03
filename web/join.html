@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Join a class · ClassSync</title>
+  <meta name="theme-color" content="#1e3b35">
+  <link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/app.css">
+  <link rel="stylesheet" href="/assets/css/auth.css">
+  <script src="/assets/js/theme.js"></script>
+  <script type="module" src="/assets/js/pages/join.js"></script>
+</head>
+<body>
+<div class="join-shell">
+  <div class="corner">
+    <a class="brand" href="/"><img class="brand-mark" src="/assets/img/logo.svg" alt="">ClassSync</a>
+    <span class="spacer"></span>
+    <button class="btn btn-ghost btn-icon theme-toggle" aria-label="Toggle dark mode"><i data-icon="moon" class="i-moon"></i><i data-icon="sun" class="i-sun"></i></button>
+  </div>
+
+  <div class="join-card page-enter">
+    <div class="badge-wrap"><i data-icon="door" data-size="26"></i></div>
+    <h1>Join your class</h1>
+    <p class="sub">Enter the code your teacher is showing and your name.</p>
+
+    <div class="callout callout-marker" id="resume" hidden style="margin-bottom:18px">
+      <i data-icon="info"></i><div style="flex:1">You're already in <b id="resumeName"></b>.
+        <a href="/portal" style="font-weight:650">Continue to the class</a></div></div>
+    <div class="callout" id="expired" hidden style="margin-bottom:18px"><i data-icon="clock"></i>
+      <span>That sign-in link has expired. Join with the class code instead.</span></div>
+
+    <form id="joinForm" novalidate>
+      <div class="callout callout-red form-alert" id="formAlert" role="alert"><i data-icon="alert"></i><span></span></div>
+      <div class="field">
+        <label for="code">Class code</label>
+        <input class="input input-lg code-input" id="code" name="code" maxlength="7" autocomplete="off" autocapitalize="characters"
+               spellcheck="false" inputmode="text" placeholder="ABC123" required autofocus>
+      </div>
+      <div class="field">
+        <label for="name">Your full name</label>
+        <div class="input-wrap"><i data-icon="user"></i>
+          <input class="input input-lg" id="name" name="name" maxlength="60" autocomplete="name" placeholder="First and last name" required></div>
+        <span class="hint">Your teacher sees this name next to your work.</span>
+      </div>
+      <button class="btn btn-primary btn-lg btn-block" type="submit">Join class</button>
+    </form>
+
+    <p class="helper"><b style="color:var(--ink-2)">Want links to open by themselves?</b> Ask your teacher to start the ClassSync Helper on this computer.</p>
+  </div>
+</div>
+</body>
+</html>

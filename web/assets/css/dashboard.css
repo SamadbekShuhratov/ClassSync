@@ -1,0 +1,43 @@
+/* Teacher dashboard */
+.dash { padding: 36px 0 64px; }
+.dash-head { display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+.dash-head p { color: var(--ink-3); margin-top: 6px; }
+
+.class-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; }
+.class-tile { --c: var(--board); position: relative; display: flex; flex-direction: column; border-radius: var(--r-lg);
+              background: var(--sheet); border: 1px solid var(--rule); overflow: hidden; color: inherit;
+              transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease), border-color var(--t); }
+.class-tile:hover { text-decoration: none; transform: translateY(-2px); box-shadow: var(--shadow-2); border-color: var(--rule-strong); }
+.class-tile:focus-visible { box-shadow: var(--focus); border-radius: var(--r-lg); }
+.class-cover { position: relative; background: var(--c); color: #fff; padding: 18px 18px 22px; min-height: 112px;
+               display: flex; flex-direction: column; isolation: isolate; }
+.class-cover::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .5;
+                       background-image: radial-gradient(rgba(255,255,255,.12) 1px, transparent 1px); background-size: 14px 14px; }
+.class-cover h3 { font-size: 19px; letter-spacing: -.02em; margin-top: auto; }
+.class-cover .subject { opacity: .78; font-size: 14px; margin-top: 2px; }
+.class-cover .live-flag { position: absolute; top: 14px; right: 14px; }
+.class-body { padding: 14px 18px 16px; display: flex; align-items: center; gap: 14px; }
+.class-stat { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; color: var(--ink-2); }
+.class-stat .i { width: 16px; height: 16px; color: var(--ink-3); }
+.class-code { margin-left: auto; font-family: var(--mono); font-weight: 700; letter-spacing: .12em; font-size: 13px;
+              color: var(--ink-3); }
+
+.new-tile { display: grid; place-items: center; gap: 10px; min-height: 172px; border: 1.5px dashed var(--rule-strong);
+            border-radius: var(--r-lg); background: transparent; color: var(--ink-3); cursor: pointer; font-weight: 600;
+            transition: border-color var(--t), color var(--t), background var(--t); }
+.new-tile:hover { border-color: var(--pen); color: var(--pen); background: var(--pen-soft); }
+.new-tile .plus { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--paper-2); }
+.new-tile:hover .plus { background: var(--sheet); }
+
+.skeleton-tile { height: 172px; border-radius: var(--r-lg); }
+
+.swatches { display: flex; gap: 10px; flex-wrap: wrap; }
+.swatch { position: relative; width: 34px; height: 34px; border-radius: 50%; cursor: pointer; }
+.swatch input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.swatch span { position: absolute; inset: 0; border-radius: 50%; background: var(--c);
+               transition: transform var(--t) var(--spring), box-shadow var(--t); }
+.swatch input:checked + span { box-shadow: 0 0 0 3px var(--sheet), 0 0 0 5px var(--c); transform: scale(.9); }
+.swatch input:focus-visible + span { box-shadow: 0 0 0 3px var(--sheet), 0 0 0 5px var(--pen); }
+
+.preview-cover { border-radius: var(--r-md); }
+
